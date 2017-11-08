@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>My portfolio</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<link rel="stylesheet" href="style.css">
+
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+	<link href="https://fonts.googleapis.com/css?family=Pattaya" rel="stylesheet">
+	<script type="text/javascript" src="jquery.js"></script>
+		<script type="text/javascript">
+		$(function(){
+		$('a[href^="#"]').click(function(){
+		var target = $(this).attr('href');
+		$('html, body').animate({scrollTop: $(target).offset().top}, 500);
+		return false; 
+		}); 
+		});
+		</script>
+	</head>
+
+	<body class="background">
+		<div class = "title1" id="main">
+			Мое портфолио
+		</div>
+			<div class = "container-fluid" style=" margin-left:0;">
+				 <div class="col-md-4">
+					 <div class="person">
+						 <div class="team-image">
+							 <img src="https://preview.ibb.co/i8UHqw/1.jpg" alt="мое фото">
+							 <p class="description">
+							 Евгения Ратнер, студентка группы <br> КН-302<br><br>
+							 Можете задавать вопросы в <br> социальных сетях
+							 </p>
+							 <ul class="social">
+							 <li><a href="https://www.instagram.com/jablochnoje_semechko/"><i class="fa fa-instagram"></i></a></li>
+							 <li><a href="https://www.facebook.com/eu.ratner"><i class="fa fa-facebook-f"></i></a></li>
+							 <li><a href="https://vk.com/vsem_lezhat_eto_ograblenie"><i class="fa fa-vk"></i></a></li>
+							 </ul>
+							 </div>
+							 <div class="person-info">
+							 <h1>Евгения Ратнер</h1>
+							 <h4>КН-302</h4>
+						 </div>
+					 </div>
+				 </div>
+				 <div class="col-md-6">
+					<div class = "text-border">
+						<p><a href="mailto:eu.ratner@yandex.ru">Написать письмо</a></p> 
+						<p><a href="https://urfu.ru/ru">УРФУ</a></p>
+						<p><a href="http://imkn.urfu.ru">Матмех</a></p>
+					</div>
+				</div>
+				<div class="col-md-4">
+			</div>	
+	</div>		
+			<div class="container-fluid">
+				<div class="menu">
+					<div class="item"><a href="#main">Главная</a></div>
+					<div class="item" style="background-color:#E9F7E9;"><a href="#about">Обо мне</a></div>
+					<div class="item" style="background-color:#CDEACE;"><a href="#galery">Галерея</a></div>
+				</div>
+				<img class="hand" src="https://image.ibb.co/bEdt2b/down_arrow74_42576.png" alt="прокрутите вниз">
+			</div>
+			<div class="container-fluid" style="height: 120%; background: linear-gradient(to top, #fefcea, #BFDBA4);">
+				<div class="about" id="about">
+					Моим хобби является программирование. Я изучала такие языки, как Java, python, C#, JScript, а также haskell.
+					<br><br> 
+					Кроме этого, я имею 2 разряд по шахматам и свободно говорю по-немецки.
+					
+				</div>
+			</div>
+			<div class="container-fluid" style="height: 100%; background: linear-gradient(to top, #BFDBA4,  #fefcea);">
+				<div class="about" style="padding-bottom:30%;" id="galery">
+				Галерея находится в разработке
+				</div>
+			</div>
+	</body>
+</html>
