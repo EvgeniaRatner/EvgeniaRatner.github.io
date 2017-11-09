@@ -194,6 +194,6 @@ a:link{
  .text-border{display:none;}
  .person{margin: 20%; margin-top:0;}
  .about{padding-left:30%;}
- .person:hover .description{margin-left:10%;}
+ .body{width:100%;}
 }
 
