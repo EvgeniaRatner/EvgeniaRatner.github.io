@@ -180,7 +180,7 @@ a:link{
 
 
 
-@media only screen and handheld and (max-width: 990px){
+@media only screen and (max-width: 990px){
  .menu{display:none;}
  .hand{display:none;}
  .text-border{display:none;}
