@@ -188,3 +188,11 @@ a:link{
  .about{padding-left:30%;}
 }
 
+@media only handheld{
+ .menu{display:none;}
+ .hand{display:none;}
+ .text-border{display:none;}
+ .person{margin: 20%; margin-top:0;}
+ .about{padding-left:30%; margin-top: 50%;}
+}
+
