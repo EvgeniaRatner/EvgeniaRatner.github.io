@@ -178,17 +178,13 @@ a:link{
 	color:#203513;
 }
 
-@media only screen and (min-width: 990px){
- .our-team{ margin-bottom: 30px; }
- .container{
-        max-width: 100%;
-    }
+
+
+@media only screen and handheld and (max-width: 990px){
+ .menu{display:none;}
+ .hand{display:none;}
+ .text-border{display:none;}
+ .person{margin: 20%; margin-top:0;}
+ .about{padding-left:30%;}
 }
 
-@media only screen and (max-width: 767px){
- .our-team .social{ left: -20px; }
-}
-
-@media only screen and (max-width: 480px){
- .our-team .social{ left: -20px; }
-}
