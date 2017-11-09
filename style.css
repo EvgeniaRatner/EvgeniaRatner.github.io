@@ -184,7 +184,7 @@ a:link{
  .menu{display:none;}
  .hand{display:none;}
  .text-border{display:none;}
- .person{margin: 10%; margin-top:0;}
+ .person{margin: 10%;margin-bottom:30%; margin-top:0;}
  .about{padding-left:30%;}
  .person:hover .description{
 	 margin-left: 10%;
