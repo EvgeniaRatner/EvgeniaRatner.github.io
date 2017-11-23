@@ -8,9 +8,9 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
 	<link href="https://fonts.googleapis.com/css?family=Pattaya" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400i" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
 	
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 		<script type="text/javascript">
 		$(function(){
 		$('a[href^="#"]').click(function(){
@@ -20,9 +20,103 @@
 		}); 
 		});
 		</script>
+	</script>
+	
+	<script>
+	
+		//var KEY = false;
+		document.onkeydown = function(event) {
+			var kCode = window.event ? window.event.keyCode : (event.keyCode ? event.keyCode : (event.which ? event.which : null))
+			switch (kCode)
+			{
+			// Нажат Escape
+			case 27:
+				//KEY = "Esc";
+				close_win();
+				break;
+			case 112:
+				//KEY = "F1";
+				alert("Переход вперед-назад по фотографиям осуществляется \n при помощи иконок внизу экрана \n либо соответствующих кнопок на клавиатуре");
+				break;
+			case 37:
+			    back();
+				break;
+			case 39:
+			    next();
+				break;	
+			}
+			return false;
+		}
+	
+		document.onkeyup = function(event) { KEY=false; }
+		
+		var current_image;
+		
+		function show_win(id, img, mode){
+			current_image = id;
+			var g = document.getElementById('galery-clicked');
+			g.style.display = 'inline';
+			g.style.height = document.body.scrollHeight + "px";
+			var w = document.getElementById('win');
+			w.style.display = 'inline';
+			w.childNodes[3].src = img;
+			var divWidth = getComputedStyle(w).width;
+			w.style.left = ((document.body.clientWidth - parseInt(divWidth.substring(0, divWidth.length-2)))/2) + "px";
+			resize(w, mode);
+		}
+		
+		function close_win(){
+			document.getElementById('win').style.display = 'none';
+			document.getElementById('galery-clicked').style.display = 'none';
+		}
+		
+		function resize(div, mode){
+			if (mode == 'vertical'){
+				div.style.height = '30%';
+				}
+			else{
+				div.style.height = '10%';
+			}
+		}
+		
+		function next(){
+			var images = ["img1","img2","img3","img4","img5","img6"];
+			if (images.indexOf(current_image)+1<images.length){
+				var next = images[images.indexOf(current_image)+1];
+			}
+			else{
+				var next = images[0];
+			}
+			close_win();
+			current_image = next;
+			var event = new Event("click");
+			document.getElementById(next).dispatchEvent(event);
+		}
+		
+		function back(){
+			var images = ["img1","img2","img3","img4","img5","img6"];
+			if (images.indexOf(current_image)-1> 0){
+				var next = images[images.indexOf(current_image)-1];
+			}
+			else{
+				var next = images[5];
+			}
+			close_win();
+			current_image = next;
+			var event = new Event("click");
+			document.getElementById(next).dispatchEvent(event);
+		}
+		
+	
+	</script>
+		
 	</head>
 
-	<body class="background">
+	<body class="background" id="body">
+	<div class="container-fluid galery-clicked" id="galery-clicked">
+		<img id = "left" src = 'images/left.jpg' class = "left" onclick = "back()">
+		<img id = "right" src = 'images/right.jpg' class = "right" onclick = "next()" >
+	</div>
 		<div class = "title1" id="main">
 			Мое портфолио
 		</div>
@@ -67,15 +161,40 @@
 			</div>
 			<div class="container-fluid" style="height: 120%; background: linear-gradient(to top, white, #BFDBA4);">
 				<div class="about" id="about">
-					Моим хобби является программирование. Я изучала такие языки, как Java, python, C#, JScript, а также haskell.
+					Моим хобби является программирование. Я изучала такие языки, как Java, python, C#, JScript, а также haskell
 					<br><br> 
-					Кроме этого, я имею 2 разряд по шахматам и свободно говорю по-немецки.
+					Кроме этого, я имею 2 разряд по шахматам и свободно говорю по-немецки
 					
 				</div>
 			</div>
-			<div class="container-fluid" style="height: 100%; background: linear-gradient(to top, #B6E7F1, white);">
-				<div class="about" style="padding-bottom:30%;" id="galery">
-				Галерея находится в разработке
+			<div class="container-fluid" style="height: 100%; background: linear-gradient(to top, #B6E7F1, white);" >
+				<div class="about" style="padding-bottom:40%; padding-left: 0;" id="galery">
+				<div class = "container-fluid win" id = "win">
+					<img id = "close" src = 'images/close.jpg' class = "close" onclick = "close_win()" >
+				    <img src = '' style = "border: solid white 8px; ">
+				</div>
+					<div class="col-md-4" style = "top:0;">
+						<img id = "img1" class="gallery_img_vertical center-block preloader" src = "images/photo1.jpg"
+						onclick = "show_win('img1','images/photo1.jpg', 'vertical')">
+						
+						<img id = "img2" class="gallery_img_horizontal center-block" src = "images/photo2.jpg"
+						onclick = "show_win('img2','images/photo2.jpg', 'horizontal')">
+					</div>
+					<div class="col-md-4" style = "top:0;">
+						<img id = "img3" class="gallery_img_horizontal center-block" src = "images/photo3.jpg"
+						onclick = "show_win('img3','images/photo3.jpg', 'horizontal')">
+						
+						<img id = "img4" class="gallery_img_horizontal center-block" src = "images/photo4.jpg"
+						onclick = "show_win('img4','images/photo4.jpg', 'horizontal')">
+					</div>
+					<div class="col-md-4" style = "top:0;">
+						<img id = "img5" class="gallery_img_horizontal center-block" src = "images/photo5.jpg"
+						onclick = "show_win('img5','images/photo5.jpg', 'horizontal')">
+						
+						<img id = "img6" class="gallery_img_vertical center-block" src = "images/photo6.jpg"
+						onclick = "show_win('img6','images/photo6.jpg', 'vertical')">
+					</div>
+				</div>			
 				</div>
 			</div>
 	</body>
