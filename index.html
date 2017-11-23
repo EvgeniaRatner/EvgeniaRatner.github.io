@@ -10,7 +10,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Pattaya" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
 	
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 		<script type="text/javascript">
 		$(function(){
 		$('a[href^="#"]').click(function(){
@@ -24,6 +24,12 @@
 	
 	<script>
 	
+		//window.onload = set_properties;
+		
+		document.onload = function() {
+		alert( 'Документ и все ресурсы загружены' );
+		};
+	
 		//var KEY = false;
 		document.onkeydown = function(event) {
 			var kCode = window.event ? window.event.keyCode : (event.keyCode ? event.keyCode : (event.which ? event.which : null))
@@ -36,7 +42,7 @@
 				break;
 			case 112:
 				//KEY = "F1";
-				alert("Переход вперед-назад по фотографиям осуществляется \n при помощи иконок внизу экрана \n либо соответствующих кнопок на клавиатуре");
+				alert("Переход вперед-назад по фотографиям осуществляется \n при помощи иконок внизу экрана \n либо соответствующих кнопок на клавиатуре \n Закрыть - крестик/клавиша Esc \n Справка - F1");
 				break;
 			case 37:
 			    back();
@@ -47,7 +53,6 @@
 			}
 			return false;
 		}
-	
 		document.onkeyup = function(event) { KEY=false; }
 		
 		var current_image;
@@ -62,12 +67,14 @@
 			w.childNodes[3].src = img;
 			var divWidth = getComputedStyle(w).width;
 			w.style.left = ((document.body.clientWidth - parseInt(divWidth.substring(0, divWidth.length-2)))/2) + "px";
+			document.cookie = current_image + " " + img + " " + mode;
 			resize(w, mode);
 		}
 		
 		function close_win(){
 			document.getElementById('win').style.display = 'none';
 			document.getElementById('galery-clicked').style.display = 'none';
+			document.cookie = "";
 		}
 		
 		function resize(div, mode){
@@ -107,12 +114,21 @@
 			document.getElementById(next).dispatchEvent(event);
 		}
 		
-	
+		function set_properties(){
+			if (document.cookie != ""){
+				var w = document.getElementById('win');
+				w.style.display = 'inline';
+				var id = document.cookie.split(' ')[0];
+				var img = document.cookie.split(' ')[1];
+				var mode = document.cookie.split(' ')[2];
+				show_win(id, img, mode);
+			}
+		}
 	</script>
 		
 	</head>
 
-	<body class="background" id="body">
+	<body class="background" id="body" onload="set_properties()">
 	<div class="container-fluid galery-clicked" id="galery-clicked">
 		<img id = "left" src = 'images/left.jpg' class = "left" onclick = "back()">
 		<img id = "right" src = 'images/right.jpg' class = "right" onclick = "next()" >
@@ -169,7 +185,7 @@
 			</div>
 			<div class="container-fluid" style="height: 100%; background: linear-gradient(to top, #B6E7F1, white);" >
 				<div class="about" style="padding-bottom:40%; padding-left: 0;" id="galery">
-				<div class = "container-fluid win" id = "win">
+				<div class = "container-fluid win" id = "win" onload = "set_properties()">
 					<img id = "close" src = 'images/close.jpg' class = "close" onclick = "close_win()" >
 				    <img src = '' style = "border: solid white 8px; ">
 				</div>
